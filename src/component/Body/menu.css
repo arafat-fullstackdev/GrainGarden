@@ -1,0 +1,8 @@
+.container{
+    height: auto;
+}
+.menu{
+    display: flex;
+   justify-content: center;
+
+}
