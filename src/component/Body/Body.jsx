@@ -1,5 +1,5 @@
-import React from 'react'
-import Menu from './menu'
+import React from 'react';
+import Menu from './menu';
 
 const Body = () => {
   return (
