@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import products from "./product";
+import Button from "react-bootstrap/Button";
+
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -8,6 +10,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Menu = () => {
   const [productList, setProductList] = useState(products);
+  const [cart,setCart] = useState([]);
+
+  const addToCart = (product) => {
+    setCart((pervCart) => [...pervCart, product]);
+  };
 
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center min-vh-100 text-center">
@@ -27,9 +34,11 @@ const Menu = () => {
                 <p>price: ${product.price}</p>
                 <Card.Text>
                   This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                  lead-in.
                 </Card.Text>
+                <Button variant="primary" onClick={() => addToCart}>
+                  Add to Cart
+                </Button>
               </Card.Body>
               <Card.Footer>
                 <small className="text-muted">Last updated 3 mins ago</small>
@@ -38,6 +47,16 @@ const Menu = () => {
           </Col>
         ))}
       </Row>
+
+      {/* //add to cart */}
+      <div className="m-4">
+        <h2>add to cart</h2>
+        <ul>
+          {cart.map((item, index) => (
+            <li key={index}>{item.name} - ${item.price}</li>
+          ))}
+        </ul>
+      </div>
     </Container>
   );
 };
