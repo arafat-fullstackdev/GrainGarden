@@ -6,3 +6,6 @@
    justify-content: center;
 
 }
+Card.img .image{
+    width: 100%;
+}

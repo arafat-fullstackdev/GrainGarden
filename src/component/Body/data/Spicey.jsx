@@ -1,26 +1,28 @@
 import React, { useState } from "react";
-import products from "./product";
+import products from ".././product";
 import Button from "react-bootstrap/Button";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
-import '../Body/menu.css';
-import Spicey from "./data/Spicey";
+// import '../Body/menu.css';
 
-const Menu = () => {
+const Spicey = () => {
   const [productList, setProductList] = useState(products);
   const [cart,setCart] = useState([]);
 
   const addToCart = (product) => {
     setCart((pervCart) => [...pervCart, product]);
+    toast.success(`${product.name} added to cart!`);
   };
 
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center min-vh-100 text-center">
-      <h1>Grocery Shop</h1>
+      {/* <h1>Grocery Shop</h1> */}
       <Row className="g-4 menu">
         {productList.map((product) => (
           <Col key={product.id} xs={12} sm={6} md={4} lg={3}>
@@ -49,7 +51,6 @@ const Menu = () => {
           </Col>
         ))}
       </Row>
-      <Spicey/>
 
       {/* //add to cart */}
       <div className="m-4">
@@ -60,9 +61,9 @@ const Menu = () => {
           ))}
         </ul>
       </div>
+      <ToastContainer/>
     </Container>
   );
 };
 
-
-export default Menu;
+export default Spicey;
