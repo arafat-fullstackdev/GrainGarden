@@ -17,6 +17,11 @@ const Menu = () => {
   const addToCart = (product) => {
     setCart((pervCart) => [...pervCart, product]);
   };
+  const removeFromCart = (product) => {
+    setCart((pervCart) => setCart.filter((item) =>{
+      item.id != product.id;
+    }));
+  }
 
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center min-vh-100 text-center">
@@ -34,10 +39,7 @@ const Menu = () => {
               <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
                 <p>price: ${product.price}</p>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural
-                  lead-in.
-                </Card.Text>
+                
                 <Button variant="primary" onClick={() => addToCart}>
                   Add to Cart
                 </Button>
@@ -53,10 +55,16 @@ const Menu = () => {
 
       {/* //add to cart */}
       <div className="m-4">
-        <h2>add to cart</h2>
+        <h2>Cart</h2>
         <ul>
           {cart.map((item, index) => (
-            <li key={index}>{item.name} - ${item.price}</li>
+            <li key={index}>{item.name} - ${item.price}{" "}
+            <Button variant="danger"
+            size="sm"
+            onClick={()=> removeFromCart(item)}>
+              Remove
+            </Button>
+            </li>
           ))}
         </ul>
       </div>
